@@ -24,7 +24,7 @@ jobs:
     - name: push tag
       uses: ad-m/github-push-action@master
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.ACCESS_TOKEN }}
         tags: true
           
     - name: Check installation results
