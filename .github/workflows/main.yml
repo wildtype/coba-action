@@ -2,21 +2,21 @@ name: deploy
 on:
   push:
     tags:
-    - '*'
-    
+      - '*'
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    
     steps:
-    - name: prepare
-      run: |
-        mkdir build
-        echo "REVISI-{{ GITHUB_REF }}" > build/index.html
-        
-    - name: push ghpage
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      with:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: build
+      - uses: actions/checkout@v2
+      - name: prepare
+        run: |
+          mkdir build
+          echo "REVISI-{{ GITHUB_REF }}" > build/index.html
+
+      - name: push ghpage
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: build
