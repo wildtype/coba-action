@@ -9,11 +9,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
+    - uses: actions/setup-node@master
+    - uses: actions/setup-python@master
+    - name: Install Firefox and xvfb
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
-        git status
-        ls -lR
+        echo Installing firefox and xvfb
+        sudo apt install firefox xvfb
+        
+    - name: Check installation results
+      run: |
+        python  --version
+        node --version
+        yarn --version
+        xvfb-run --help
+        firefox --version
