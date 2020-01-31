@@ -10,13 +10,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-node@master
-    - uses: actions/setup-python@master
-    - name: Install Firefox and xvfb
-      run: |
-        echo Installing firefox and xvfb
-        sudo apt install firefox xvfb
-        
     - name: create tag
       run: |
         git tag "ACT-$(date +%d%m%Y-%H%M%S)"
@@ -26,11 +19,3 @@ jobs:
       with:
         github_token: ${{ secrets.ACCESS_TOKEN }}
         tags: true
-          
-    - name: Check installation results
-      run: |
-        python  --version
-        node --version
-        yarn --version
-        xvfb-run --help
-        firefox --version
