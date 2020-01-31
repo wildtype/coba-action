@@ -16,6 +16,9 @@ jobs:
         echo Installing firefox and xvfb
         sudo apt install firefox xvfb
         
+    - name: This will fail
+      run: exit 1
+      
     - name: Check installation results
       run: |
         python  --version
