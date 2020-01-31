@@ -16,9 +16,16 @@ jobs:
         echo Installing firefox and xvfb
         sudo apt install firefox xvfb
         
-    - name: This will fail
-      run: exit 1
-      
+    - name: create tag
+      run: |
+        git tag "ACT-$(date +%d%m%Y-%H%M%S)"
+        
+    - name: push tag
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        tags: true
+          
     - name: Check installation results
       run: |
         python  --version
