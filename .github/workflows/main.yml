@@ -13,6 +13,7 @@ jobs:
       
       - name: prepare envars
         run: |
+          git fetch
           echo "REVISION=$(git describe --tags)" >> $GITHUB_ENV
       
       - name: update revision label
