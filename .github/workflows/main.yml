@@ -10,10 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: prepare
+      
+      - name: prepare envars
+        run: |
+          echo "REVISION=$(git describe --tags)" >> $GITHUB_ENV
+      
+      - name: update revision label
         run: |
           mkdir build
-          echo "REVISI-${{ env.GITHUB_REF }}" > build/index.html
+          echo "REVISI-${{ env.REVISION }}" > build/index.html
 
       - name: push ghpage
         uses: JamesIves/github-pages-deploy-action@releases/v3
